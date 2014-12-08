@@ -31,7 +31,10 @@ class TasksController extends \BaseController {
 	 */
 	public function store()
 	{
-		// grab the post data
+
+        $task = new Task;
+        $task->name = Input::get('name');
+        $task->save();
 
         // save the task
 	}

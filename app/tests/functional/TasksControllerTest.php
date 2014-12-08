@@ -16,13 +16,18 @@ class TasksControllerTest extends TestCase {
 
     public function test_post_new_task_to_the_list()
     {
-        $demoData = [ 'name' => 'A demo task' ];
+        $demoName = 'A demo task';
+        $demoData = [ 'name' => $demoName ];
 
         $this->call('POST', 'tasks', $demoData);
         $this->assertResponseOk();
 
-        // check if data is in db
+        $task = Task::where('name', '=', $demoName)->first();
+
+        $this->assertEquals($demoName, $task->name);
 
     }
+
+
 
 } 
