@@ -31,7 +31,9 @@ class TasksController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// grab the post data
+
+        // save the task
 	}
 
 
