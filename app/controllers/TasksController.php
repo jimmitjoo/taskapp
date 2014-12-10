@@ -9,18 +9,7 @@ class TasksController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+		return Task::all();
 	}
 
 
@@ -36,7 +25,7 @@ class TasksController extends \BaseController {
         $task->name = Input::get('name');
         $task->save();
 
-        // save the task
+        return $task;
 	}
 
 
@@ -48,19 +37,9 @@ class TasksController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
-	}
+        $task = Task::findOrFail($id);
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+        return $task;
 	}
 
 
@@ -72,7 +51,12 @@ class TasksController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$task = Task::findOrFail($id);
+        $task->name = Input::get('name');
+        $task->completed = Input::get('completed');
+        $task->save();
+
+        return $task;
 	}
 
 
@@ -84,7 +68,8 @@ class TasksController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$task = Task::findOrFail($id);
+        $task->delete();
 	}
 
 

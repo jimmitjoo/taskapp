@@ -28,6 +28,28 @@ class TasksControllerTest extends TestCase {
 
     }
 
+    public function test_get_tasks()
+    {
+        $allTasks = Task::all();
+        $existingTasksCount = count($allTasks);
+
+
+        $demoName = 'Task';
+
+        $newTasksCount = 3;
+
+        for ($i=0; $i<$newTasksCount; $i++) {
+            $demoData = ['name' => $demoName . ' ' . $i ];
+            $this->call('POST', 'tasks', $demoData);
+        }
+
+        $tasks = Task::all();
+
+        $this->assertEquals($existingTasksCount + $newTasksCount, count($tasks));
+    }
+
+
+
 
 
 } 

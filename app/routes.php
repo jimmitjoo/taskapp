@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
 
-Route::resource('tasks', 'TasksController');
+
+Route::resource('tasks', 'TasksController', ['except' => ['create', 'edit']]);
