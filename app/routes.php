@@ -12,5 +12,8 @@
 */
 
 
+Route::get('/', function() {
+    return View::make('index');
+});
 
 Route::resource('tasks', 'TasksController', ['except' => ['create', 'edit']]);
