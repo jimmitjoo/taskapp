@@ -60,8 +60,8 @@
 
     <div class="container">
         <header>
-            <h1>Made With Love Test</h1>
-            <small>Hack done by Jimmie Johansson</small>
+            <h1>madewithlove</h1>
+            <small>Technical assignment by Jimmie Johansson</small>
         </header>
 
 
@@ -79,10 +79,6 @@
         </section>
     </div>
 
-    <{ Form::open(['action' => 'tasks.store']) }>
-        <{ Form::text('name', null, ['ng-model' => 'newTask', 'placeholder' => 'Add new task', 'class' => 'textfield']) }>
-        <{ Form::submit('Create new task', ['class' => 'btn']) }>
-    <{ Form::close() }>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
     <script src="/js/tasks.js"></script>

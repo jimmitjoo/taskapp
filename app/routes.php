@@ -16,8 +16,5 @@ Route::get('/', function() {
     return View::make('index');
 });
 
-Route::post('tasks', [
-    'as' => 'tasks.store',
-    'uses' => 'TasksController@store'
-]);
-Route::resource('tasks', 'TasksController', ['except' => ['create', 'edit', 'store']]);
+
+Route::resource('tasks', 'TasksController', ['except' => ['create', 'edit']]);

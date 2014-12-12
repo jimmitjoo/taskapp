@@ -9,7 +9,7 @@ class TasksController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Task::all();
+		return Task::remember(60)->cacheTags('tasks')->get();
 	}
 
 
@@ -20,6 +20,7 @@ class TasksController extends \BaseController {
 	 */
 	public function store()
 	{
+        Cache::tags('tasks')->flush();
 
         $task = new Task;
         $task->name = Input::get('name');
@@ -51,7 +52,9 @@ class TasksController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$task = Task::findOrFail($id);
+        Cache::tags('tasks')->flush();
+
+        $task = Task::findOrFail($id);
         $task->name = Input::get('name');
         $task->completed = Input::get('completed');
         $task->save();
@@ -68,7 +71,9 @@ class TasksController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$task = Task::findOrFail($id);
+        Cache::tags('tasks')->flush();
+
+        $task = Task::findOrFail($id);
         $task->delete();
 	}
 
