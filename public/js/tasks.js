@@ -1,11 +1,14 @@
 
 function TasksController ($scope, $http) {
 
-    $http.get('/tasks').success(function(tasks){
 
-        $scope.tasks = tasks;
+    $scope.getTasks = function() {
+        $http.get('/tasks').success(function(tasks){
 
-    });
+            $scope.tasks = tasks;
+
+        });
+    }
 
 
     $scope.createTask = function() {
@@ -14,6 +17,8 @@ function TasksController ($scope, $http) {
 
         $scope.tasks.push(newTask);
         $http.post('/tasks', newTask);
+
+        $scope.newTask = null;
 
     }
 
@@ -31,5 +36,20 @@ function TasksController ($scope, $http) {
 
     }
 
+
+    $scope.deleteTask = function(task) {
+
+        $http({
+            method: 'DELETE',
+            url: 'tasks/' + task.id
+        }).success(function(){
+
+            $scope.getTasks();
+
+        });
+
+    }
+
+    $scope.getTasks();
 
 }

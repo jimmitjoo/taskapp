@@ -25,6 +25,22 @@
             opacity: .25;
         }
 
+        li {
+            position: relative;
+            line-height: 30px;
+        }
+        .delete {
+            width: 24px;
+            height: 24px;
+            background: red;
+            color: #fff;
+            text-align: center;
+            line-height: 23px;
+            position: absolute;
+            right: 40px;
+            top: 0;
+        }
+
         .textfield, .btn {
             width: 80%;
             margin: 5px 10%;
@@ -73,7 +89,8 @@
             <ul>
                 <li ng-repeat="task in tasks">
                     <input type="checkbox" ng-model="task.completed" data-task-id="{{ task.id }}" ng-click="updateTask(task)">
-                    <span class="{{ task.completed ? 'completed' : '' }}">{{ task.name }} </span>
+                    <span class="task {{ task.completed ? 'completed' : '' }}">{{ task.name }} </span>
+                    <div class="delete" ng-click="deleteTask(task)">X</div>
                 </li>
             </ul>
         </section>
