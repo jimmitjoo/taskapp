@@ -45,6 +45,10 @@
             cursor: pointer;
         }
 
+        ul {
+            list-style: none;
+        }
+
         @media (max-width: 450px) {
             .container {
                 width: 100%;
@@ -68,12 +72,17 @@
             </form>
             <ul>
                 <li ng-repeat="task in tasks">
-                    <input type="checkbox" ng-model="task.completed">
+                    <input type="checkbox" ng-model="task.completed" data-task-id="{{ task.id }}" ng-click="updateTask(task)">
                     <span class="{{ task.completed ? 'completed' : '' }}">{{ task.name }} </span>
                 </li>
             </ul>
         </section>
     </div>
+
+    <{ Form::open(['action' => 'tasks.store']) }>
+        <{ Form::text('name', null, ['ng-model' => 'newTask', 'placeholder' => 'Add new task', 'class' => 'textfield']) }>
+        <{ Form::submit('Create new task', ['class' => 'btn']) }>
+    <{ Form::close() }>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
     <script src="/js/tasks.js"></script>

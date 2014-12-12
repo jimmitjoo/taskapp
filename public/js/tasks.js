@@ -1,12 +1,6 @@
 
 function TasksController ($scope, $http) {
 
-    /*$scope.tasks = [
-        { name: 'Hej', completed: false },
-        { name: 'Wabbane', completed: true }
-    ];*/
-
-
     $http.get('/tasks').success(function(tasks){
 
         $scope.tasks = tasks;
@@ -19,7 +13,21 @@ function TasksController ($scope, $http) {
         var newTask = { name: $scope.newTask };
 
         $scope.tasks.push(newTask);
-        $http.post('/tasks');
+        $http.post('/tasks', newTask);
+
+    }
+
+
+    $scope.updateTask = function(task) {
+
+        $http.get('/tasks/' + task.id).success(function (t) {
+
+            return $http({
+                method: 'PUT',
+                url: 'tasks/' + t.id,
+                data: {name: t.name, completed: task.completed}
+            });
+        })
 
     }
 
